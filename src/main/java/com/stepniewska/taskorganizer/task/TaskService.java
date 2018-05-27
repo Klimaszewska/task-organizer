@@ -23,5 +23,20 @@ public class TaskService {
     public List<Task> getAllTasks(){
         return taskRepository.findAll();
     }
+    
+    public Task update(int id, Task task){
+        Task taskToUpdate = getById(id);
+        taskToUpdate.setContent(task.getContent());
+        taskToUpdate.setCategory(task.getCategory());
+        taskToUpdate.setStatus(task.getStatus());
+        taskRepository.save(taskToUpdate);
+        return taskToUpdate;
+    }
+
+    public Task delete(int id){
+        Task taskToDelete = getById(id);
+        taskRepository.delete(taskToDelete);
+        return taskToDelete;
+    }
 
 }
