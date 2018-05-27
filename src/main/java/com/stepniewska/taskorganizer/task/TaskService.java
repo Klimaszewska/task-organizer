@@ -20,4 +20,8 @@ public class TaskService {
         return taskRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
+    public List<Task> getAllTasks(){
+        return taskRepository.findAll();
+    }
+
 }
