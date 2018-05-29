@@ -1,36 +1,35 @@
 package com.stepniewska.taskorganizer.task;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 @Entity
 @Table(name = "task")
 public class Task {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "task_id")
     private Integer id;
 
-    @Column(name = "task_content", nullable = false)
+
     @NotEmpty(message = "Add the task description")
-    @Length(max = 40)
+    @Length(max = 200)
+    @Column(name = "task_content", nullable = false)
     private String content;
 
     @Column(name = "task_category")
     private Integer category;
 
-    @Column(name = "task_status", nullable = false)
     @NotNull
+    @Column(name = "task_status", nullable = false)
     private TaskStatus status;
 }

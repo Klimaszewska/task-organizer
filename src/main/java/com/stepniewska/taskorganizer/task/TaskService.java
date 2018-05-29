@@ -1,6 +1,5 @@
 package com.stepniewska.taskorganizer.task;
 
-import com.stepniewska.taskorganizer.utils.PrefillDatabase;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +11,8 @@ import java.util.List;
 public class TaskService {
     private TaskRepository taskRepository;
 
+//    private taskList;
+
     public Task createTask(Task task){
         return taskRepository.save(task);
     }
@@ -21,7 +22,11 @@ public class TaskService {
     }
 
     public List<Task> getAllTasks(){
-        return taskRepository.findAll();
+        List<Task> taskList = taskRepository.findAll();
+        if(taskList.isEmpty()) {
+            throw new EntityNotFoundException();
+        }
+        return taskList;
     }
     
     public Task update(int id, Task task){
