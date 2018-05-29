@@ -40,11 +40,6 @@ public class User implements UserDetails {
         return Collections.singletonList(new SimpleGrantedAuthority("USER"));
     }
 
-
-/*    public Collection<? extends GrantedAuthority> setAuthorities(){
-        return Collections.singletonList(new SimpleGrantedAuthority("USER"));
-    }*/
-
     @Override
     public String getUsername() {
         return email;
