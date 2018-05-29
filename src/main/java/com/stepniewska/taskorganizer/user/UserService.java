@@ -30,7 +30,7 @@ public class UserService implements UserDetailsService {
 
     User registerUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        Collections.singletonList(new SimpleGrantedAuthority("USER"));
+//        Collections.singletonList(new SimpleGrantedAuthority("USER"));
         return userRepository.save(user);
     }
 }
